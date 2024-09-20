@@ -1,0 +1,2 @@
+http=com.eaac.container.http.HttpStatementContainer
+rpc=com.eaac.container.rpc.RpcStatementContainer

@@ -1,0 +1,2 @@
+http=com.eaac.datasource.http.HttpDataSource
+rpc=com.eaac.datasource.rpc.RpcDataSource
