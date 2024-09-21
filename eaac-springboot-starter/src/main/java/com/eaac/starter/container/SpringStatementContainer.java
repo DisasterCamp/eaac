@@ -22,23 +22,18 @@ public class SpringStatementContainer extends EcConfigContainer {
     public SpringStatementContainer(EcConfiguration ecConfiguration, String type, ApplicationContext applicationContext) {
         super(ecConfiguration, type);
         this.applicationContext = applicationContext;
+        init();
     }
 
     @Override
     public HttpStatement getStatement(String appId, String uri) {
-        synchronized (this) {
-            if (!isStart.get()) {
-                init();
-                isStart.compareAndSet(false, true);
-                Map<String, HttpStatement> httpStatementMap = typeStatement.get(appId);
-                if (Objects.isNull(httpStatementMap) || !httpStatementMap.containsKey(KeyUtil.generateStatementKey(uri, type))) return null;
-                return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
-            }
-            return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
-        }
+        Map<String, HttpStatement> httpStatementMap = typeStatement.get(appId);
+        if (Objects.isNull(httpStatementMap) || !httpStatementMap.containsKey(KeyUtil.generateStatementKey(uri, type))) return null;
+        return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
     }
 
-    private void init() {
+    @Override
+    public void init() {
         Map<String, Object> beansWithAnnotation = applicationContext.getBeansWithAnnotation(StatementMapperClazz.class);
         for (Map.Entry<String, Object> entry : beansWithAnnotation.entrySet()) {
             Object invoker = entry.getValue();
@@ -49,6 +44,7 @@ public class SpringStatementContainer extends EcConfigContainer {
             }
             statementIn(aClass, typeStatement, invoker);
         }
+        super.init();
     }
 }
 

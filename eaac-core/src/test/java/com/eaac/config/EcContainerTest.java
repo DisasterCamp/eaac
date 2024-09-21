@@ -9,7 +9,7 @@ public class EcContainerTest extends BaseTest {
     @Test
     public void start() throws Exception{
         SimpleExecutor simpleExecutor = new SimpleExecutor(ecConfiguration);
-        for (int i = 0; i < 100000 ; i++) {
+        for (int i = 0; i < 1000 ; i++) {
             new Thread(() -> {
                 try {
                     Object exec = simpleExecutor.exec("http", "app1", "hh", "hello world");

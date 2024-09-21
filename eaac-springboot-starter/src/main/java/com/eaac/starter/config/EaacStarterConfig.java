@@ -5,6 +5,7 @@ import com.eaac.exec.Executor;
 import com.eaac.pipe.ChannelInboundHandler;
 import com.eaac.pipe.ChannelOutboundHandler;
 import com.eaac.starter.exec.SpringExecutor;
+import com.eaac.starter.prop.EcConfigProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -22,12 +23,13 @@ import java.util.Map;
 @EnableAspectJAutoProxy
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
+@EnableConfigurationProperties(EcConfigProperties.class)
 public class EaacStarterConfig {
 
     @Bean
     @ConditionalOnMissingBean(EcConfiguration.class)
-    public EcConfiguration configure() {
-        EcConfiguration ecConfiguration = new EcConfiguration();
+    public EcConfiguration configure(EcConfigProperties ecConfigProperties) {
+        EcConfiguration ecConfiguration = new EcConfiguration(ecConfigProperties.getScanPackage(), ecConfigProperties.getSupportType());
         return ecConfiguration;
     }
 

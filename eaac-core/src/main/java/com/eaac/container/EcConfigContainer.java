@@ -91,5 +91,8 @@ public abstract class EcConfigContainer implements Container {
         }
     }
 
-
+    @Override
+    public void init() {
+        isStart.compareAndSet(false, true);
+    }
 }

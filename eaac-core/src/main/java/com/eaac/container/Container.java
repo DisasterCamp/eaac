@@ -18,4 +18,9 @@ public interface Container {
      */
     HttpStatement getStatement(String appId, String uri);
 
+    /**
+     * Init.
+     */
+    void init();
+
 }

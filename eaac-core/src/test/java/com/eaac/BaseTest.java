@@ -12,7 +12,7 @@ public class BaseTest {
 
     @Before
     public void setUp() throws Exception {
-        this.ecConfiguration = new EcConfiguration();
+        this.ecConfiguration = new EcConfiguration(new String[]{"http"});
         ecConfiguration.addIn(new TransformDataHandler());
         ecConfiguration.addIn(new TransformDataHandler2());
         ecConfiguration.addOut(new LogDataHandler());

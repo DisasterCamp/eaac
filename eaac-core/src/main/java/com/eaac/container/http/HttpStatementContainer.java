@@ -31,26 +31,22 @@ public class HttpStatementContainer extends EcConfigContainer {
 
     public HttpStatementContainer(EcConfiguration ecConfiguration, String type) {
         super(ecConfiguration, type);
+        init();
     }
 
 
     @Override
     public HttpStatement getStatement(String appId, String uri) {
-        synchronized (this) {
-            if (!isStart.get()) {
-                init();
-                isStart.compareAndSet(false, true);
-                Map<String, HttpStatement> httpStatementMap = typeStatement.get(appId);
-                if (Objects.isNull(httpStatementMap) || !httpStatementMap.containsKey(KeyUtil.generateStatementKey(uri, type))) return null;
-                return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
-            }
-            return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
-        }
+        Map<String, HttpStatement> httpStatementMap = typeStatement.get(appId);
+        if (Objects.isNull(httpStatementMap) || !httpStatementMap.containsKey(KeyUtil.generateStatementKey(uri, type)))
+            return null;
+        return typeStatement.get(appId).get(KeyUtil.generateStatementKey(uri, type));
     }
 
     /**
      * Init.
      */
+    @Override
     public void init() {
         Reflections reflections = new Reflections(ecConfiguration.getScanPackage() == null ?
                 "com.eaac" : ecConfiguration.getScanPackage());
@@ -60,8 +56,9 @@ public class HttpStatementContainer extends EcConfigContainer {
                 logger.warn("{},StatementMapperClazz cannot be used with Interface", aClass.getName());
                 continue;
             }
-            statementIn(aClass, typeStatement,null);
+            statementIn(aClass, typeStatement, null);
         }
+        super.init();
     }
 
 

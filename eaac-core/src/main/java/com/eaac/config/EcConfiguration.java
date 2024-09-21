@@ -24,11 +24,49 @@ import java.util.LinkedList;
  */
 public class EcConfiguration {
     private String[] scanPackage;
+    private String[] supportType;
 
-    private ContainerFactory containerFactory = new SpiContainerFactory(this);
+    private ContainerFactory containerFactory;
 
-    private DefaultPipeline defaultPipeline = new DefaultPipeline();
+    private DefaultPipeline defaultPipeline;
 
+
+    /**
+     * Instantiates a new Ec configuration.
+     *
+     * @param scanPackage the scan package
+     * @param supportType the support type
+     */
+    public EcConfiguration(String[] scanPackage, String[] supportType) {
+        this.scanPackage = scanPackage;
+        this.supportType = supportType;
+        this.containerFactory = new SpiContainerFactory(this);
+        this.defaultPipeline = new DefaultPipeline();
+        //initialize
+        initContainer(supportType);
+    }
+
+    private void initContainer(String[] supportType) {
+        if (supportType !=null && supportType.length!=0){
+            for (String type : supportType) {
+                this.containerFactory.getContainer(type);
+            }
+        }
+    }
+
+    /**
+     * Instantiates a new Ec configuration.
+     *
+     * @param supportType the support type
+     */
+    public EcConfiguration(String[] supportType) {
+        this.scanPackage = new String[]{"com.eaac"};
+        this.supportType = supportType;
+        this.containerFactory = new SpiContainerFactory(this);
+        this.defaultPipeline = new DefaultPipeline();
+        //initialize
+        initContainer(supportType);
+    }
 
     /**
      * Get scan package string [ ].
@@ -64,13 +102,22 @@ public class EcConfiguration {
     /**
      * Gets container.
      *
-     * @param type the type
+     * @param type    the type
+     * @param args    the args
+     * @param classes the classes
      * @return the container
      */
     public Container getContainer(String type, Object[] args, Class[] classes) {
         return containerFactory.getContainer(type, args, classes);
     }
 
+    /**
+     * Gets container.
+     *
+     * @param type the type
+     * @param args the args
+     * @return the container
+     */
     public Container getContainer(String type, Object... args) {
         return containerFactory.getContainer(type, args);
     }
