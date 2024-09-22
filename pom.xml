@@ -28,9 +28,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git@github.com:disaster1-tesk/eaac.git</connection>
-        <developerConnection>scm:git@github.com:disaster1-tesk/eaac.git</developerConnection>
-        <url>git@github.com:disaster1-tesk/eaac.git</url>
+        <connection>scm:git@github.com:DisasterCamp/eaac.git</connection>
+        <developerConnection>scm:git@github.com:DisasterCamp/eaac.git</developerConnection>
+        <url>git@github.com:DisasterCamp/eaac.git</url>
     </scm>
 
     <distributionManagement>
@@ -40,7 +40,7 @@
         </snapshotRepository>
         <repository>
             <id>sonatype</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
@@ -180,17 +180,18 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.sonatype.central</groupId>-->
-<!--                <artifactId>central-publishing-maven-plugin</artifactId>-->
-<!--                <version>0.5.0</version>-->
-<!--                <extensions>true</extensions>-->
-<!--                <configuration>-->
-<!--                    &lt;!&ndash; 这里的serverId是之前在settings.xml中配置的 &ndash;&gt;-->
-<!--                    <publishingServerId>central</publishingServerId>-->
-<!--                    <tokenAuth>true</tokenAuth>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- 这里的serverId是之前在settings.xml中配置的 -->
+                    <publishingServerId>central</publishingServerId>
+                    <checksums>required</checksums>
+                    <deploymentName>eaac</deploymentName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

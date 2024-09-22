@@ -3,8 +3,8 @@ package com.eaac.exec;
 import com.eaac.config.EcConfiguration;
 import com.eaac.pipe.*;
 import com.eaac.statement.HttpStatement;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 import java.util.LinkedList;

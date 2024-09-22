@@ -6,10 +6,33 @@
     <parent>
         <groupId>love.disaster</groupId>
         <artifactId>eaac</artifactId>
-        <version>${revision}</version>
+        <version>1.1.0</version>
     </parent>
 
     <artifactId>eaac-springboot-starter</artifactId>
+    <version>1.1.0</version>
+    <url>https://gitee.com/disaster_-camp</url>
+    <description>eaac-springboot-starter</description>
+
+    <developers>
+        <developer>
+            <name>disaster</name>
+            <url>https://gitee.com/d__isaster</url>
+            <organization>disaster_-camp</organization>
+            <organizationUrl>https://gitee.com/disaster_-camp</organizationUrl>
+            <roles>
+                <role>
+                    manager
+                </role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@github.com:DisasterCamp/eaac.git</connection>
+        <developerConnection>scm:git@github.com:DisasterCamp/eaac.git</developerConnection>
+        <url>git@github.com:DisasterCamp/eaac.git</url>
+    </scm>
 
 
     <dependencies>
@@ -40,6 +63,14 @@
 
 
     </dependencies>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
 
 </project>
