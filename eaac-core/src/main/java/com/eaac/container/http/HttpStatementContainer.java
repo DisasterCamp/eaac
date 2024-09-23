@@ -29,6 +29,12 @@ public class HttpStatementContainer extends EcConfigContainer {
     private Map<String, Map<String, HttpStatement>> typeStatement = new ConcurrentHashMap<>();
 
 
+    /**
+     * Instantiates a new Http statement container.
+     *
+     * @param ecConfiguration the ec configuration
+     * @param type            the type
+     */
     public HttpStatementContainer(EcConfiguration ecConfiguration, String type) {
         super(ecConfiguration, type);
         init();

@@ -9,9 +9,18 @@ import com.eaac.util.KeyUtil;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * The type Rpc data source.
+ */
 public class RpcDataSource extends EcConfigDataSource<RpcConnection> {
     private Map<String, RpcConnection> connectionMap = new ConcurrentHashMap<>();
 
+    /**
+     * Instantiates a new Rpc data source.
+     *
+     * @param ecConfiguration the ec configuration
+     * @param type            the type
+     */
     public RpcDataSource(EcConfiguration ecConfiguration, String type) {
         super(ecConfiguration, type);
     }

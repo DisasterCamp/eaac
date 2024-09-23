@@ -19,6 +19,9 @@ import org.springframework.core.Ordered;
 
 import java.util.Map;
 
+/**
+ * The type Eaac starter config.
+ */
 @Configuration
 @EnableAspectJAutoProxy
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
@@ -26,6 +29,12 @@ import java.util.Map;
 @EnableConfigurationProperties(EcConfigProperties.class)
 public class EaacStarterConfig {
 
+    /**
+     * Configure ec configuration.
+     *
+     * @param ecConfigProperties the ec config properties
+     * @return the ec configuration
+     */
     @Bean
     @ConditionalOnMissingBean(EcConfiguration.class)
     public EcConfiguration configure(EcConfigProperties ecConfigProperties) {
@@ -33,6 +42,13 @@ public class EaacStarterConfig {
         return ecConfiguration;
     }
 
+    /**
+     * Executor executor.
+     *
+     * @param ecConfiguration    the ec configuration
+     * @param applicationContext the application context
+     * @return the executor
+     */
     @Bean
     @ConditionalOnBean(EcConfiguration.class)
     @ConditionalOnMissingBean(Executor.class)

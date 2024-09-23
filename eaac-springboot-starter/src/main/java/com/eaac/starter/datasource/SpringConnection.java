@@ -8,10 +8,19 @@ import org.springframework.context.ApplicationContext;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * The type Spring connection.
+ */
 public class SpringConnection implements Connection {
     private HttpStatement httpStatement;
     private ApplicationContext applicationContext;
 
+    /**
+     * Instantiates a new Spring connection.
+     *
+     * @param httpStatement      the http statement
+     * @param applicationContext the application context
+     */
     public SpringConnection(HttpStatement httpStatement, ApplicationContext applicationContext) {
         this.httpStatement = httpStatement;
         this.applicationContext = applicationContext;

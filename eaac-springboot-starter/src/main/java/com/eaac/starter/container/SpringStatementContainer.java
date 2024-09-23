@@ -14,11 +14,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * The type Spring statement container.
+ */
 public class SpringStatementContainer extends EcConfigContainer {
     private ApplicationContext applicationContext;
     private Logger logger = LoggerFactory.getLogger(HttpStatementContainer.class);
     private Map<String, Map<String, HttpStatement>> typeStatement = new ConcurrentHashMap<>();
 
+    /**
+     * Instantiates a new Spring statement container.
+     *
+     * @param ecConfiguration    the ec configuration
+     * @param type               the type
+     * @param applicationContext the application context
+     */
     public SpringStatementContainer(EcConfiguration ecConfiguration, String type, ApplicationContext applicationContext) {
         super(ecConfiguration, type);
         this.applicationContext = applicationContext;
