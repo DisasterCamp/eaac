@@ -9,6 +9,12 @@ public class TransformDataHandler implements ChannelInboundHandler {
 
     @Override
     public void session(ChannelInContext channelInContext) {
+        Object[] args = channelInContext.getArgs();
+
+        if (args.length!=0){
+            args[0] = "heihei";
+        }
+        channelInContext.writeAndFlush(args);
         System.out.println("============= TransformDataHandler ============");
     }
 }

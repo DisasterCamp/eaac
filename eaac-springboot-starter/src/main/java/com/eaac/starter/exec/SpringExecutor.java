@@ -53,11 +53,8 @@ public class SpringExecutor extends BaseExecutor {
         DataSource dataSource = spiDataSourceFactory.getDataSource(type, ars, cls);
         if (dataSource == null) throw new NoFoundContainerException("no found dataSource", statement.getInvokerType());
         Connection connection = dataSource.getConnection(statement);
-        String parameterType = statement.getParameterType();
-        String[] parameterTypes = StringUtils.isEmpty(parameterType) ? null : parameterType.split(",");
-        Object[] args = postHandler(params, statement);
-        Object execute = connection.execute(statement.getInterfaceName(), statement.getInterfaceMethodName(), parameterTypes, new String[]{"ignore"}, args);
-        execute = afterHandler(statement, execute);
-        return execute;
+        return doExec(params, statement, connection);
     }
+
+
 }

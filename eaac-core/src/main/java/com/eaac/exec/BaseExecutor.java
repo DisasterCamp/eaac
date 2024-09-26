@@ -1,8 +1,10 @@
 package com.eaac.exec;
 
 import com.eaac.config.EcConfiguration;
+import com.eaac.datasource.Connection;
 import com.eaac.pipe.*;
 import com.eaac.statement.HttpStatement;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,5 +75,22 @@ public abstract class BaseExecutor implements Executor {
             }
         }
         return args;
+    }
+
+    /**
+     * Do exec object.
+     *
+     * @param params        the params
+     * @param statement     the statement
+     * @param connection    the connection
+     * @return the object
+     * @throws Exception the exception
+     */
+    protected Object doExec(Object[] params, HttpStatement statement, Connection connection) throws Exception {
+        String[] parameterTypes = StringUtils.isEmpty(statement.getParameterType()) ? null : statement.getParameterType().split(",");
+        Object[] args = postHandler(params, statement);
+        Object execute = connection.execute(statement.getInterfaceName(), statement.getInterfaceMethodName(), parameterTypes, new String[]{"ignore"}, args);
+        execute = afterHandler(statement, execute);
+        return execute;
     }
 }
