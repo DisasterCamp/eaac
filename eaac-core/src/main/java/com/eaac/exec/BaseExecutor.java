@@ -2,6 +2,7 @@ package com.eaac.exec;
 
 import com.eaac.config.EcConfiguration;
 import com.eaac.datasource.Connection;
+import com.eaac.datasource.SpiDataSourceFactory;
 import com.eaac.pipe.*;
 import com.eaac.statement.HttpStatement;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,11 @@ public abstract class BaseExecutor implements Executor {
      */
     protected EcConfiguration ecConfiguration;
 
+    /**
+     * The Spi data source factory.
+     */
+    protected SpiDataSourceFactory spiDataSourceFactory;
+
 
     /**
      * Instantiates a new Base executor.
@@ -31,8 +37,19 @@ public abstract class BaseExecutor implements Executor {
      */
     public BaseExecutor(EcConfiguration ecConfiguration) {
         this.ecConfiguration = ecConfiguration;
+        this.spiDataSourceFactory = new SpiDataSourceFactory(ecConfiguration);
     }
 
+    /**
+     * Instantiates a new Base executor.
+     *
+     * @param ecConfiguration      the ec configuration
+     * @param spiDataSourceFactory the spi data source factory
+     */
+    public BaseExecutor(EcConfiguration ecConfiguration, SpiDataSourceFactory spiDataSourceFactory) {
+        this.ecConfiguration = ecConfiguration;
+        this.spiDataSourceFactory = spiDataSourceFactory;
+    }
 
     /**
      * After handler object.
@@ -80,9 +97,9 @@ public abstract class BaseExecutor implements Executor {
     /**
      * Do exec object.
      *
-     * @param params        the params
-     * @param statement     the statement
-     * @param connection    the connection
+     * @param params     the params
+     * @param statement  the statement
+     * @param connection the connection
      * @return the object
      * @throws Exception the exception
      */

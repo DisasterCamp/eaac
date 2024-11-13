@@ -40,6 +40,7 @@ public abstract class EcConfigContainer implements Container {
     public EcConfigContainer(EcConfiguration ecConfiguration, String type) {
         this.ecConfiguration = ecConfiguration;
         this.type = type;
+        init();
     }
 
     protected void statementIn(Class<?> aClass, Map<String, Map<String, HttpStatement>> cache, Object invoker) {

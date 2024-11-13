@@ -20,6 +20,7 @@ public class SimpleExecutor extends BaseExecutor {
 
     private Class[] cls = new Class[]{EcConfiguration.class, String.class};
 
+
     /**
      * Instantiates a new Simple executor.
      *
@@ -32,7 +33,6 @@ public class SimpleExecutor extends BaseExecutor {
 
     @Override
     public Object exec(String type, String appId, String uri, Object... params) throws Exception {
-        SpiDataSourceFactory spiDataSourceFactory = new SpiDataSourceFactory(ecConfiguration);
         Object[] ars = new Object[]{ecConfiguration, type};
         Container container = ecConfiguration.getContainer(type, ars, cls);
         if (container == null) throw new NoFoundContainerException("no found container", type);

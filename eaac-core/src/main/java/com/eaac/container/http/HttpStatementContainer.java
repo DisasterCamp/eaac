@@ -37,7 +37,6 @@ public class HttpStatementContainer extends EcConfigContainer {
      */
     public HttpStatementContainer(EcConfiguration ecConfiguration, String type) {
         super(ecConfiguration, type);
-        init();
     }
 
 
