@@ -17,9 +17,7 @@ import java.util.LinkedList;
 /**
  * The type Http data source.
  *
- * @author <a href="mailto:"
- * @date 2024 /09/17
- * @description ecConfiguration
+ * @author disaster
  * @since 1.0
  */
 public class EcConfiguration {
