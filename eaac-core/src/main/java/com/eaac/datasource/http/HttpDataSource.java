@@ -17,9 +17,7 @@ import java.util.function.Function;
 /**
  * The type Http data source.
  *
- * @author <a href="mailto:"
- * @date 2024 /09/17
- * @description http data source
+ * @author disaster
  * @since 1.0
  */
 public class HttpDataSource extends EcConfigDataSource<HttpConnection> {
